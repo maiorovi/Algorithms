@@ -2,7 +2,7 @@ package chapt1;
 
 public class QuickFind implements UF {
 
-    int[] container;
+    private int[] container;
 
     public QuickFind(int length) {
         container = new int[length];
@@ -14,9 +14,12 @@ public class QuickFind implements UF {
 
     @Override
     public void union(int p, int q) {
+        int pid = container[p];
+        int qid = container[q];
+
         for (int i = 0; i < container.length; i++) {
-            if ( container[p] == container[q] ) {
-                container[p] = container[q];
+            if ( pid == container[i] ) {
+                container[i] = qid;
             }
         }
     }
