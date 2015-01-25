@@ -6,14 +6,16 @@ public class QuickUnion implements UF {
     public QuickUnion(int length) {
         id = new int[length];
         for (int i = 0; i < id.length; i++) {
-
+            id[i] = i;
         }
     }
 
 
     @Override
     public void union(int p, int q) {
-        id[p] = id[q];
+        int i = root(p);
+        int j = root(q);
+        id[i] = j;
     }
 
     @Override
@@ -24,7 +26,7 @@ public class QuickUnion implements UF {
 
     private int root(int p) {
         if (p == id[p]) {
-            return id[p];
+            return p;
         }
         return root(id[p]);
     }
