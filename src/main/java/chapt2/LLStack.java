@@ -5,9 +5,8 @@ public class LLStack<Type> {
     private Node first;
 
     private class Node {
-        public Node next;
-        public Type value;
-
+         Node next;
+         Type value;
     }
 
     public void push(Type item) {
@@ -23,4 +22,7 @@ public class LLStack<Type> {
         return value;
     }
 
+    public boolean isEmpty() {
+        return first == null;
+    }
 }
