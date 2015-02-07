@@ -24,7 +24,7 @@ public class SortHelper {
     }
 
     public static void  generateRandomArray(Comparable<Integer> arr[], int maxValue) {
-        Random rand = new Random(10l);
+        Random rand = new Random();
 
         for (int i = 0; i < arr.length; i++) {
             arr[i] = rand.nextInt(maxValue);
@@ -33,5 +33,12 @@ public class SortHelper {
 
     public static void generateRandomArray(Comparable<Integer> arr[]) {
         generateRandomArray(arr, Integer.MAX_VALUE);
+    }
+
+    public static void printArray(Comparable[] arr) {
+        for (int i =0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
     }
 }

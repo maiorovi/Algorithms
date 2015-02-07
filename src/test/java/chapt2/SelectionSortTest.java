@@ -20,7 +20,7 @@ public class SelectionSortTest {
     @Test
     public void shouldSortArray() {
         Integer[] arr = new Integer[100];
-        generateRandomArray(arr);
+        generateRandomArray(arr, 100);
 
         sort.sort(arr);
 
