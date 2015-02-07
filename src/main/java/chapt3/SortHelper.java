@@ -1,5 +1,7 @@
 package chapt3;
 
+import java.util.Random;
+
 public class SortHelper {
 
     public static void exch(Comparable a[], int i, int j) {
@@ -10,5 +12,26 @@ public class SortHelper {
 
     public static boolean less(Comparable a, Comparable b) {
         return a.compareTo(b) < 0;
+    }
+
+    public static boolean isSorted(Comparable a[]) {
+        for (int i = 1; i < a.length; i++) {
+            if (less(a[i], a[i - 1]))
+                return false;
+        }
+
+        return true;
+    }
+
+    public static void  generateRandomArray(Comparable<Integer> arr[], int maxValue) {
+        Random rand = new Random(10l);
+
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = rand.nextInt(maxValue);
+        }
+    }
+
+    public static void generateRandomArray(Comparable<Integer> arr[]) {
+        generateRandomArray(arr, Integer.MAX_VALUE);
     }
 }
