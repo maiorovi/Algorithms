@@ -1,20 +1,19 @@
 package chapt2;
 
-import chapt3.SelectionSort;
-import chapt3.Sort;
 import org.junit.Before;
 import org.junit.Test;
 
-import static chapt3.SortHelper.*;
+import static chapt2.SortHelper.generateRandomArray;
+import static chapt2.SortHelper.isSorted;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SelectionSortTest {
+public class InsertionSortTest {
 
     private Sort sort;
 
     @Before
     public void setUp() {
-        sort = new SelectionSort();
+        sort = new InsertionSort();
     }
 
     @Test
@@ -26,5 +25,4 @@ public class SelectionSortTest {
 
         assertThat(isSorted(arr)).isTrue();
     }
-
 }
