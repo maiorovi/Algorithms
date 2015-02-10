@@ -3,7 +3,7 @@ package chapt2;
 import static chapt2.SortHelper.*;
 
 public class InsertionSort implements Sort {
-    @Override
+
     public void sort(Comparable[] a) {
         int N = a.length;
 
