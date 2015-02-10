@@ -1,6 +1,7 @@
-package chapt3;
+package chapt2;
 
-import static chapt3.SortHelper.*;
+import static chapt2.SortHelper.exch;
+import static chapt2.SortHelper.less;
 
 public class SelectionSort implements Sort {
 

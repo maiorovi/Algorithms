@@ -1,4 +1,4 @@
-package chapt3;
+package chapt2;
 
 import java.util.Random;
 
