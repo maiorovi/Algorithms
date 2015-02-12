@@ -20,22 +20,23 @@ public class TopDownMergeSort implements Sort {
         int mid = lo + (high - lo) / 2;
 
         sort(a, lo, mid);
-        sort(a, mid+1, high);
+        sort(a, mid + 1, high);
         merge(a, lo, mid, high);
     }
 
     private void merge(Comparable a[], int lo, int mid, int high) {
 
         for (int i = lo; i <= high; i++) {
-                aux[i] = a[i];
+            aux[i] = a[i];
         }
 
         int i = lo, j = mid + 1;
 
-        for(int k = lo; k <= high; k++) {
-            if (i > mid)       a[k] = aux[j++];
-            else if (j > high)  a[k] = aux[i++];
-            else if (less(aux[i], aux[j]))  a[k] = aux[i++];
+        for (int k = lo; k <= high; k++) {
+            if (i > mid) a[k] = aux[j++];
+            else if (j > high) a[k] = aux[i++];
+            else if (less(aux[i], aux[j])) a[k] = aux[i++];
             else a[k] = aux[j++];
+        }
     }
 }
