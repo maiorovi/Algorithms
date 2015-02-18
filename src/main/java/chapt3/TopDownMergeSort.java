@@ -6,8 +6,8 @@ import static chapt2. SortHelper.*;
 public class TopDownMergeSort extends MergeSort {
 
     public void sort(Comparable[] a) {
-        sort(a, 0, a.length - 1);
         aux = new Comparable[a.length];
+        sort(a, 0, a.length - 1);
     }
 
     private void sort(Comparable[] a, int lo, int high) {

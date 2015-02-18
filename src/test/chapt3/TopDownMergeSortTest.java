@@ -1,28 +1,27 @@
-package chapt2;
+package chapt3;
 
 import drivers.SortDriver;
 import org.junit.Before;
 import org.junit.Test;
 
-import static chapt2.SortHelper.generateRandomArray;
 import static chapt2.SortHelper.isSorted;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class InsertionSortTest {
+public class TopDownMergeSortTest {
 
-    private Sort sort;
+    private TopDownMergeSort sort;
     private SortDriver driver;
 
     @Before
     public void setUp() {
-        sort = new InsertionSort();
-        driver = new SortDriver();
+        sort = new TopDownMergeSort();
+        driver =new SortDriver();
     }
 
     @Test
     public void shouldSortArray() {
-        Integer[] arr = driver.makeSortingOnRandomData(sort);
+        Integer array[] = driver.makeSortingOnRandomData(sort);
 
-        assertThat(isSorted(arr)).isTrue();
+        assertThat(isSorted(array)).isTrue();
     }
 }

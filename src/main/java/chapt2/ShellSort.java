@@ -11,9 +11,9 @@ public class ShellSort implements Sort {
             h = 3 * h + 1;
         }
 
-        while (h > 1) {
+        while (h >= 1) {
             for (int i = h; i < N; i++) {
-                for (int j = i; j > h && less(a[j], a[j - 1]); j -= h) {
+                for (int j = i; j >= h && less(a[j], a[j - 1]); j -= h) {
                     exch(a, j, j - h);
                 }
             }
