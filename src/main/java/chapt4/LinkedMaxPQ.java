@@ -1,5 +1,7 @@
 package chapt4;
 
+import java.util.Comparator;
+
 public class LinkedMaxPQ<Type extends Comparable> implements PriorityQueue<Type>{
 
     private Node first;
@@ -11,9 +13,7 @@ public class LinkedMaxPQ<Type extends Comparable> implements PriorityQueue<Type>
         first = new Node();
         first.next = oldFirst;
         first.value = value;
-
-        if (oldFirst != null)
-            oldFirst.prev = first;
+        N++;
     }
 
     @Override
@@ -25,7 +25,10 @@ public class LinkedMaxPQ<Type extends Comparable> implements PriorityQueue<Type>
     public Type delMax() {
         Node max = getMaxNode();
         Type maxValue = max.value;
-        max.prev = max.next;
+        exch(max);
+        first = first.next;
+        N--;
+
         return maxValue;
     }
 
@@ -44,27 +47,25 @@ public class LinkedMaxPQ<Type extends Comparable> implements PriorityQueue<Type>
         return val1.compareTo(val2) < 0;
     }
 
-    private void exchAndRemoveFirstNode(Node second) {
+    private void exch(Node n) {
         Node temp = first;
-        first = second;
-        second = temp;
-        this.first = this.first.next;
+        first.value = n.value;
+        n.value = first.value;
     }
 
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return N == 0;
     }
 
     @Override
     public int size() {
-        return 0;
+        return N;
     }
 
     private class Node {
         Node next;
-        Node prev;
         Type value;
     }
 }
