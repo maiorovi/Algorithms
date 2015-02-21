@@ -6,7 +6,7 @@ public class ArrayMaxPQ<Type extends Comparable> implements PriorityQueue<Type> 
     private int N;
 
     public ArrayMaxPQ() {
-        container = (Type[]) new Object[10];
+        container = (Type[]) new Comparable[10];
     }
 
     @Override
@@ -18,13 +18,13 @@ public class ArrayMaxPQ<Type extends Comparable> implements PriorityQueue<Type> 
     }
 
     private void resizeArray(Type[] array, int size) {
-        Type[] tempArray = (Type[]) new Object[size];
+        Type[] tempArray = (Type[]) new Comparable[size];
 
         for(int i = 0; i < N; i++) {
             tempArray[i] = array[i];
         }
 
-        array = tempArray;
+        container = tempArray;
     }
 
     @Override
@@ -50,7 +50,7 @@ public class ArrayMaxPQ<Type extends Comparable> implements PriorityQueue<Type> 
     private int findMaxValue() {
         int maxIndex = 0;
 
-        for(int i = 0; i < container.length; i++) {
+        for(int i = 0; i < N; i++) {
             if ( container[maxIndex].compareTo(container[i]) < 0) {
                 maxIndex = i;
             }
