@@ -11,6 +11,9 @@ public class HeapMaxPQ<Type extends Comparable> implements PriorityQueue<Type> {
 
     @Override
     public void insert(Type value) {
+        if (container.length == N) {
+            resize(container, container.length * 2);
+        }
         container[++N] = value;
         swim(container, N);
     }
@@ -26,6 +29,16 @@ public class HeapMaxPQ<Type extends Comparable> implements PriorityQueue<Type> {
         return one.compareTo(two) < 0;
     }
 
+    private void resize(Type[] container, int size) {
+        Type[] temp = (Type[])new Comparable[size];
+
+        for(int i = 0; i < N; i++) {
+            temp[i] = container[i];
+        }
+
+        container = temp;
+    }
+
     private void exch(int i, int j) {
         Type temp = container[i];
         container[i] = container[j];
@@ -34,11 +47,14 @@ public class HeapMaxPQ<Type extends Comparable> implements PriorityQueue<Type> {
 
     @Override
     public Type max() {
-        return null;
+        return container[1];
     }
 
     @Override
     public Type delMax() {
+        if (container.length / 4 == N) {
+            resize(container, container.length / 2);
+        }
         Type max = container[1];
         exch(1, N--);
         container[N+1] = null;
