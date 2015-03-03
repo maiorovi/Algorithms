@@ -8,6 +8,30 @@ public class BinarySearchTree<K extends Comparable, T> {
 
     }
 
+    public T min() {
+        return min(root);
+    }
+
+    private T min(Node x) {
+        while(x.left != null) {
+            x = x.left;
+        }
+
+        return x.value;
+    }
+
+    public T max() {
+        return max(root);
+    }
+
+    private T max(Node x) {
+        while(x.right != null) {
+            x = x.right;
+        }
+
+        return x.value;
+    }
+
     private class Node {
         T value;
         K key;
@@ -64,5 +88,4 @@ public class BinarySearchTree<K extends Comparable, T> {
         }
 
     }
-
 }

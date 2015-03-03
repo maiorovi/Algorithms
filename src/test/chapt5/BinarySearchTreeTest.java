@@ -7,20 +7,40 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BinarySearchTreeTest {
 
-    private BinarySearchTree<String, Integer> tree;
+    private BinarySearchTree<Integer, String> tree;
 
     @Before
     public void setUp() {
-        tree = new BinarySearchTree<String, Integer>();
+        tree = new BinarySearchTree<Integer, String>();
     }
 
     @Test
     public void shouldReturnElementsWhichWasPutToDataStructure() {
-        tree.put("Egor", 1);
-        tree.put("Andrew", 2);
-        tree.put("Zahar", 3);
-        assertThat(tree.get("Egor")).isEqualTo(1);
-        assertThat(tree.get("Andrew")).isEqualTo(2);
+        initBinarySearchTree();
+
+        assertThat(tree.get(1)).isEqualTo("Egor");
+        assertThat(tree.get(2)).isEqualTo("Andrew");
+    }
+
+    private void initBinarySearchTree() {
+        tree.put(1, "Egor");
+        tree.put(2, "Andrew");
+        tree.put(3, "Zahar");
+
+    }
+
+    @Test
+    public void shouldReturnMinimalElementInTree() {
+        initBinarySearchTree();
+
+        assertThat(tree.min()).isEqualTo("Egor");
+    }
+
+    @Test
+    public void shouldReturnMaximumElementInTree() {
+        initBinarySearchTree();
+
+        assertThat(tree.max()).isEqualTo("Zahar");
     }
 
 }
