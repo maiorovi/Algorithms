@@ -88,4 +88,21 @@ public class BinarySearchTree<K extends Comparable, T> {
         }
 
     }
+
+    public K floor(K key) {
+        Node x = floor(root, key);
+        if (x == null) return null;
+        return x.key;
+    }
+
+    private Node floor(Node x, K key) {
+        if (x == null) return null;
+        int cmp = key.compareTo(x.key);
+
+        if (cmp == 0) return x;
+        if (cmp < 0) return floor(x.left, key);
+        Node t = floor(x.right, key);
+        if (t != null) return t;
+        else return x;
+    }
 }

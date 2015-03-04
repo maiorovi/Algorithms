@@ -27,6 +27,8 @@ public class BinarySearchTreeTest {
         tree.put(2, "Andrew");
         tree.put(3, "Zahar");
 
+        tree.put(5, "Ivan");
+
     }
 
     @Test
@@ -40,7 +42,14 @@ public class BinarySearchTreeTest {
     public void shouldReturnMaximumElementInTree() {
         initBinarySearchTree();
 
-        assertThat(tree.max()).isEqualTo("Zahar");
+        assertThat(tree.max()).isEqualTo("Ivan");
+    }
+
+    @Test
+    public void shouldFindTheFloorOfGivenKey() {
+        initBinarySearchTree();
+
+        assertThat(tree.floor(4)).isEqualTo(3);
     }
 
 }
