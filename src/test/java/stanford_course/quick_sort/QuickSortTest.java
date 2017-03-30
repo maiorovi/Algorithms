@@ -1,11 +1,9 @@
 package stanford_course.quick_sort;
 
-import com.sun.xml.internal.bind.v2.model.annotation.Quick;
 import org.junit.Before;
 import org.junit.Test;
 import util.ClasspathResourceReader;
 
-import java.util.Arrays;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -21,7 +19,7 @@ public class QuickSortTest {
 	public void setUp() throws Exception {
 		resourceReader = new ClasspathResourceReader();
 
-		quickSort = new QuickSort(new DefaultPivotSelectionStrategy());
+		quickSort = new QuickSort(new FirstElementPivotSelectionStrategy());
 	}
 
 	@Test
@@ -57,7 +55,7 @@ public class QuickSortTest {
 		Integer arr[] = {4,5,2,1,7,6,3,8};
 
 		quickSort.sort(arr);
-		System.out.println(quickSort.getAcc());
+		System.out.println(quickSort.getComparisonNumbers());
 		assertThat(arr).containsExactly(1,2,3,4,5,6,7,8);
 	}
 
@@ -74,11 +72,38 @@ public class QuickSortTest {
 		Integer arr[] = dataLoader.apply("quicksort.txt");
 
 		quickSort.sort(arr);
+
 		assertThat(isSorted.test(arr)).isTrue();
 	}
 
-	private Integer[] loadDataFromFile(String fileName) {
-		return resourceReader.readFile(fileName);
+	@Test
+	public void sortsArrayUsingTakeLastAsPivotStrategy() throws Exception {
+		quickSort = new QuickSort(new LastElementPivotSelectionStrategy());
+		Integer arr[] = {4,5,2,1,7,6,3,8,5,5};
+
+		quickSort.sort(arr);
+		assertThat(arr).containsExactly(1,2,3,4,5,5,5,6,7,8);
+	}
+
+
+	@Test
+	public void sortsDataFromFileUsingTakeFirstPartitionStrategy() throws Exception {
+		quickSort = new QuickSort(new FirstElementPivotSelectionStrategy());
+		Integer arr[] = dataLoader.apply("quicksort.txt");
+
+		quickSort.sort(arr);
+		System.out.println(quickSort.getComparisonNumbers());
+		assertThat(isSorted.test(arr)).isTrue();
+	}
+
+	@Test
+	public void sortsDataFromFileUsingTakeLastPartitionStrategy() throws Exception {
+		quickSort = new QuickSort(new LastElementPivotSelectionStrategy());
+		Integer arr[] = dataLoader.apply("quicksort.txt");
+
+		quickSort.sort(arr);
+		System.out.println(quickSort.getComparisonNumbers());
+		assertThat(isSorted.test(arr)).isTrue();
 	}
 
 	private Predicate<Integer[]> isSorted = arr -> {

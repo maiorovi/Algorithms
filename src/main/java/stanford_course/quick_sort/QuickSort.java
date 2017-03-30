@@ -2,14 +2,14 @@ package stanford_course.quick_sort;
 
 public class QuickSort {
 	private PivotSelectionStrategy pivotSelectionStrategy;
-	private int acc = 0;
+	private int comparisonNumbers = 0;
 
 	public QuickSort(PivotSelectionStrategy pivotSelectionStrategy) {
 		this.pivotSelectionStrategy = pivotSelectionStrategy;
 	}
 
 	public void sort(Integer[] arr) {
-		acc = 0;
+		comparisonNumbers = 0;
 		sort(arr, 0, arr.length - 1);
 	}
 
@@ -19,12 +19,12 @@ public class QuickSort {
 			return;
 		}
 		//choose pivot
-		int pivotIndex = pivotSelectionStrategy.choosePivot(arr, lo, high);
+		int pivotIndex = pivotSelectionStrategy.choosePivot(arr, lo, high - 1);
 		//swap pivot to 0 index position
 		swap(arr, lo, pivotIndex);
 		//partition task
 		int finalPivotIndex = partition(arr, lo, high);
-		acc += (high - lo);
+		comparisonNumbers += (high - lo);
 		sort(arr, lo, finalPivotIndex);
 		sort(arr, finalPivotIndex + 1, high);
 	}
@@ -55,7 +55,7 @@ public class QuickSort {
 		arr[to] = tmp;
 	}
 
-	public int getAcc() {
-		return acc;
+	public int getComparisonNumbers() {
+		return comparisonNumbers;
 	}
 }
