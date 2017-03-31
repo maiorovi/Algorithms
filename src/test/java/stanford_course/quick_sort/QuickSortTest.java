@@ -101,7 +101,7 @@ public class QuickSortTest {
 
 		quickSort.sort(arr);
 		System.out.println(quickSort.getComparisonNumbers());
-		System.out.println("brute force: " + quickSort.getBruteForceComparisonNumbers());
+		assertThat(quickSort.getComparisonNumbers()).isEqualTo(162085);
 		assertThat(isSorted.test(arr)).isTrue();
 	}
 
@@ -113,6 +113,19 @@ public class QuickSortTest {
 		quickSort.sort(arr);
 		System.out.println(quickSort.getComparisonNumbers());
 		System.out.println("brute force: " + quickSort.getBruteForceComparisonNumbers());
+		assertThat(quickSort.getComparisonNumbers()).isEqualTo(164123);
+		assertThat(isSorted.test(arr)).isTrue();
+	}
+
+	@Test
+	public void sortsDataFromFileUsingTakeMedianPivotSelectionStrategy() throws Exception {
+		quickSort = new QuickSort(new MedianElementPivotSelectionStrategyTest());
+		Integer arr[] = dataLoader.apply("quicksort.txt");
+
+		quickSort.sort(arr);
+		System.out.println(quickSort.getComparisonNumbers());
+		System.out.println("brute force: " + quickSort.getBruteForceComparisonNumbers());
+//		assertThat(quickSort.getComparisonNumbers()).isEqualTo(156383);
 		assertThat(isSorted.test(arr)).isTrue();
 	}
 
