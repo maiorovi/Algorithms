@@ -119,7 +119,7 @@ public class QuickSortTest {
 
 	@Test
 	public void sortsDataFromFileUsingTakeMedianPivotSelectionStrategy() throws Exception {
-		quickSort = new QuickSort(new MedianElementPivotSelectionStrategyTest());
+		quickSort = new QuickSort(new MedianElementPivotSelectionStrategy());
 		Integer arr[] = dataLoader.apply("quicksort.txt");
 
 		quickSort.sort(arr);
