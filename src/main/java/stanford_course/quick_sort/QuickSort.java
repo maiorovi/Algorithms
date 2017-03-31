@@ -3,6 +3,7 @@ package stanford_course.quick_sort;
 public class QuickSort {
 	private PivotSelectionStrategy pivotSelectionStrategy;
 	private int comparisonNumbers = 0;
+	private int bruteForceComparisonNumbers = 0;
 
 	public QuickSort(PivotSelectionStrategy pivotSelectionStrategy) {
 		this.pivotSelectionStrategy = pivotSelectionStrategy;
@@ -10,22 +11,23 @@ public class QuickSort {
 
 	public void sort(Integer[] arr) {
 		comparisonNumbers = 0;
+		bruteForceComparisonNumbers = 0;
 		sort(arr, 0, arr.length - 1);
 	}
 
 	public void sort(Integer[] arr, int lo, int high) {
 		//base case
-		if (high - lo <= 1) {
+		if (high - lo <= 0) {
 			return;
 		}
 		//choose pivot
-		int pivotIndex = pivotSelectionStrategy.choosePivot(arr, lo, high - 1);
+		int pivotIndex = pivotSelectionStrategy.choosePivot(arr, lo, high);
 		//swap pivot to 0 index position
 		swap(arr, lo, pivotIndex);
 		//partition task
 		int finalPivotIndex = partition(arr, lo, high);
 		comparisonNumbers += (high - lo);
-		sort(arr, lo, finalPivotIndex);
+		sort(arr, lo, finalPivotIndex - 1);
 		sort(arr, finalPivotIndex + 1, high);
 	}
 
@@ -42,8 +44,8 @@ public class QuickSort {
 			} else if (pivot <= arr[z]) {
 				i++;
 			}
+			bruteForceComparisonNumbers++;
 		}
-
 		swap(arr, lo, j-1);
 
 		return j - 1;
@@ -57,5 +59,9 @@ public class QuickSort {
 
 	public int getComparisonNumbers() {
 		return comparisonNumbers;
+	}
+
+	public int getBruteForceComparisonNumbers() {
+		return bruteForceComparisonNumbers;
 	}
 }

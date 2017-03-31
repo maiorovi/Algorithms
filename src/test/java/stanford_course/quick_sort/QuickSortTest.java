@@ -23,6 +23,14 @@ public class QuickSortTest {
 	}
 
 	@Test
+	public void simpleArrayFrom1To20() throws Exception {
+		Integer[] arr = {20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1};
+		quickSort.sort(arr);
+
+		assertThat(isSorted.test(arr)).isTrue();
+	}
+
+	@Test
 	public void partitionsArrayAroundPivot() throws Exception {
 		Integer arr[] = {4,5,2,1,7,6,3};
 
@@ -87,28 +95,41 @@ public class QuickSortTest {
 
 
 	@Test
-	public void sortsDataFromFileUsingTakeFirstPartitionStrategy() throws Exception {
+	public void sortsDataFromFileUsingTakeFirstPivotSelectionStrategy() throws Exception {
 		quickSort = new QuickSort(new FirstElementPivotSelectionStrategy());
 		Integer arr[] = dataLoader.apply("quicksort.txt");
 
 		quickSort.sort(arr);
 		System.out.println(quickSort.getComparisonNumbers());
+		System.out.println("brute force: " + quickSort.getBruteForceComparisonNumbers());
 		assertThat(isSorted.test(arr)).isTrue();
 	}
 
 	@Test
-	public void sortsDataFromFileUsingTakeLastPartitionStrategy() throws Exception {
+	public void sortsDataFromFileUsingTakeLastPivotSelectionStrategy() throws Exception {
 		quickSort = new QuickSort(new LastElementPivotSelectionStrategy());
 		Integer arr[] = dataLoader.apply("quicksort.txt");
 
 		quickSort.sort(arr);
 		System.out.println(quickSort.getComparisonNumbers());
+		System.out.println("brute force: " + quickSort.getBruteForceComparisonNumbers());
 		assertThat(isSorted.test(arr)).isTrue();
+	}
+
+	@Test
+	public void sortsSimpleArrayAndOutputNumberOfComparisonsCorrectly() throws Exception {
+		quickSort = new QuickSort(new FirstElementPivotSelectionStrategy());
+		Integer arr[] = {4,3,2,1};
+
+		quickSort.sort(arr);
+		System.out.println(quickSort.getComparisonNumbers());
+		System.out.println("brute force: " + quickSort.getBruteForceComparisonNumbers());
 	}
 
 	private Predicate<Integer[]> isSorted = arr -> {
 		for (int i = 0; i < arr.length - 1; i++) {
 			if (arr[i] > arr[i+1]) {
+				System.out.println(arr[i] + " " + arr[i+1]);
 				return false;
 			}
 		}
