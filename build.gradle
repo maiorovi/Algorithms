@@ -1,6 +1,8 @@
 apply plugin: 'java'
 
-sourceCompatibility = 1.5
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 version = '1.0'
 
 repositories {
@@ -10,5 +12,8 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     compile 'org.assertj:assertj-core:1.7.1'
+    compile group: 'org.assertj', name: 'assertj-core', version: '3.6.2'
+    compile group: 'com.google.guava', name: 'guava', version: '21.0'
+    compile group: 'org.mockito', name: 'mockito-all', version: '2.0.2-beta'
     compile group: 'org.assertj', name: 'assertj-core', version: '3.6.2'
 }
